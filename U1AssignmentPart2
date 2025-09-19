@@ -1,0 +1,78 @@
+import java.util.*;
+public class U1AssignmentPart2 {
+
+    public static void ATMBankTransaction () {
+        Scanner sc = new Scanner(System.in);
+        int PINcode = 12345, balance = 10000;
+        boolean PINenteredCorrectly = false;
+        while (true) {
+            System.out.println("(1) Deposit \n(2) Withdraw \n(3) Check Balance \n(4) Exit/End \n");
+            int input = sc.nextInt();
+            if (input == 4) {
+                break;
+            }
+            if (PINenteredCorrectly == false) {
+                System.out.println("what is your PIN code");
+                while (true) {
+                    if (sc.nextInt() != PINcode) {
+                        System.out.println("wrong PIN code");
+                    } else {
+                        System.out.println("correct PIN code");
+                        System.out.println();
+                        PINenteredCorrectly = true;
+                        break;
+                    }
+                }
+            }
+            if (input == 1) {
+                System.out.println("how much would you like to deposit?");
+                balance += sc.nextInt();
+                System.out.println(balance);
+            } else if (input == 2) {
+                System.out.println("how much would you like to withdraw?");
+                int withdraw = sc.nextInt();
+                if (balance - withdraw > 0) {
+                    balance -= withdraw;
+                    System.out.println(balance);
+                } else {
+                    System.out.println("not enough fund in account");
+                }
+            } else if (input == 3) {
+                System.out.print("your current balance is ");
+                System.out.print(balance);
+                System.out.println(" dollars");
+            } else if (input == 4) {
+                break;
+            }
+            System.out.println();
+
+        }
+        sc.close();
+    }
+
+    public static void PyramidPattern() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("how many rows do you want, max 9");
+        int rows = sc.nextInt();
+        int cnt = 1;
+        for (int i = rows; i > 0; i--) {
+            for (int j = i - 1; j > 0; j--) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k < cnt; k++) {
+                System.out.print(cnt);
+                System.out.print(" ");
+            }
+            System.out.println();
+            cnt++;
+        }
+        sc.close();
+    }
+
+    public static void main(String[] args) {
+        //ATMBankTransaction();
+        //PyramidPattern();
+    }
+}
+
+

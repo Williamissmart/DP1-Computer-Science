@@ -5,12 +5,18 @@ public class U1AssignmentPart1 {
 
     static void VariablesandTypeCasting() {
         boolean bool = true;
-        char characher = 'r';
+        char character = 'r';
         double decimal = 1.1;
         int integer = 5;
         String letters = "1234";
         int ConvertLetters = Integer.parseInt(letters);
+        System.out.println(bool);
+        System.out.println(character);
+        System.out.println(decimal);
+        System.out.println(integer);
+        System.out.println(letters);
         System.out.println(ConvertLetters);
+
     }
 
     static void PasswordValidationwithSubstrings() {

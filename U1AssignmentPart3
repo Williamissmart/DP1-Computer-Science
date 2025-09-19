@@ -1,0 +1,81 @@
+import java.util.*; 
+public class U1AssignmentPart3 {
+    static boolean containsWord(char[] letterList, String input) {
+        Map<Character, Integer> letterCount = new HashMap<>();
+        for (char c : letterList) {
+            letterCount.put(c, letterCount.getOrDefault(c, 0) + 1);
+        }
+        for (char c : input.toCharArray()) {
+            if (!letterCount.containsKey(c) || letterCount.get(c) == 0) {
+                return false;
+            }
+            letterCount.put(c, letterCount.get(c) - 1);
+        }
+        return true;
+    }
+    static boolean usedWord(String[] usedWords, String input) {
+        for (int i = 0; i < usedWords.length; i++) {
+            if (input.equals(usedWords[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        boolean playAgain = true;
+        while (playAgain == true) {
+            int currScore = 0, numTryFail = 0, currRound = 0;
+            boolean alive = true;
+            String letterListString;
+            String[] usedWords = new String[100];
+            System.out.println("game started, enter 10 characters");
+                while (true) {
+                    letterListString = sc.nextLine();
+                    if (letterListString.length() == 10) break;
+                    else System.out.println("invalid, enter 10 characters");
+                } 
+                System.out.println("the game starts, make the words");
+                char[] letterList = letterListString.toCharArray();
+            while(alive == true) {
+                String input;
+                while (true) {
+                    input = sc.nextLine();
+                    if (usedWord(usedWords, input) == false) {
+                        break;
+                    } else {
+                        System.out.println("already used this word, try a different word");
+                    }
+                }
+                if (containsWord(letterList, input) == true) {
+                    currScore += input.length();
+                    System.out.print("nice job! current score ");
+                    System.out.println(currScore);
+                    usedWords[currRound] = input;
+                } else {
+                    currScore -= input.length();
+                    numTryFail++;
+                    System.out.print("nice try! current score ");
+                    System.out.println(currScore);
+                }
+                if (currScore <= 0 || numTryFail > 2) {
+                    alive = false;
+                    System.out.print("fea");
+                }
+                currRound++;
+            }
+
+            System.out.println("you have failed, do you want to try again (y/n)");
+            while (true) {
+                if (sc.nextLine().equals("y")) {
+                    break;
+                } else {
+                    playAgain = false;
+                    System.out.println("quit");
+                    break;
+                }
+            }
+        }
+        sc.close();
+    }
+}

@@ -1,0 +1,239 @@
+import java.util.*; 
+public class U1AssignmentPart1 {
+
+    Scanner sc = new Scanner(System.in);
+
+    static void VariablesandTypeCasting() {
+        boolean bool = true;
+        char characher = 'r';
+        double decimal = 1.1;
+        int integer = 5;
+        String letters = "1234";
+        int ConvertLetters = Integer.parseInt(letters);
+        System.out.println(ConvertLetters);
+    }
+
+    static void PasswordValidationwithSubstrings() {
+        Scanner sc = new Scanner(System.in);
+        boolean setSucc = false;
+        while (setSucc == false) {
+            System.out.println("enter your password");
+            String password1 = sc.nextLine();
+            System.out.println("enter your password again");
+            String password2 = sc.nextLine();
+            if (password1.length() <= 8 && password2.length() <= 8 && 
+            password1.contains("123") && password2.contains("123") &&
+            password1.equals(password2)) {
+                    System.out.println("Password set successfully");
+                    setSucc = true;
+            } else {
+                System.out.println("Invaid password");
+            }
+        }
+        sc.close();
+    }
+
+    static void StringManipulationChallenge (){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter a sentence");
+        String sentence = sc.nextLine();
+        char[] charSent = sentence.toCharArray();
+        int begin = 0;
+        int end = charSent.length - 1;
+        while (begin < end) {
+            char temp = charSent[begin];
+            charSent[begin] = charSent[end];
+            charSent[end] = temp;
+            begin++;
+            end--;
+        }
+        String reversedString = new String(charSent);
+        System.out.println(reversedString);
+        sc.close();
+    }
+
+    static void ArrayListAnalysis() {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        Arrays.sort(arr);
+        System.out.println(arr[0]);
+        System.out.println(arr[arr.length - 1]);
+        int total = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            total += arr[i];        
+        }
+        double average = total/(arr.length - 1);
+        int cnt = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] >= average) {
+                cnt++;
+            }
+        }
+        System.out.println(cnt);
+    }
+    static void MatrixOperations() {
+        Scanner sc = new Scanner(System.in);
+        int[][] arr = new int[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        for (int i = 0; i < 3; i++) {
+            int tempSum = 0;
+            for (int j = 0; j < 3; j++) {
+                tempSum += arr[i][j];
+            }
+            System.out.println(tempSum);
+        }
+        for (int j = 0; j < 3; j++) {
+            int tempSum = 0;
+            for (int i = 0; i < 3; i++) {
+                tempSum += arr[i][j];
+            }
+            System.out.println(tempSum);
+        }
+        sc.close();
+    }
+
+    static void DynamicListManager() {
+        Scanner sc = new Scanner(System.in);
+        HashSet<String> list = new HashSet<String>();
+        while (true) {
+            String input1 = sc.nextLine();
+            if (input1.equals("add")) {
+                String input2 = sc.nextLine();
+                list.add(input2);
+            } else if (input1.equals("remove")) {
+                String input2 = sc.nextLine();
+                if (list.contains(input2)) {
+                    list.remove(input2);
+                } else {
+                    System.out.println("tried to remove non-existant");
+                }
+            }else if (input1.equals("display")) {
+                for (String i : list) {
+                    System.out.println(i);
+                }
+            } else if (input1.equals("exit")) {
+                break;
+            }
+        }
+        sc.close();
+    }
+
+    static void NumberClassifierwithSelection() {
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        boolean isPrime = true;
+        if (input < 0) {
+            System.out.println("negative");
+        } else if (input > 0) {
+            System.out.println("positive");
+            for (int i = 2; i * i <= input; i++) {
+                if (input % i == 0) {
+                    isPrime = false;
+                }
+            }
+        } else if(input == 0) {
+            System.out.println("zero");
+        }
+        if (isPrime == false) {
+            System.out.println("non prime");
+        } else {
+            System.out.println("prime");
+        }
+        sc.close();
+    }
+
+    public static void LoopswithConditions () {
+        for (int i = 0; i < 100; i++) {
+            if (i%3 == 0 && i%5 != 0) {
+                System.out.println(i);
+            }
+        }
+    }
+
+    public static void is_palindrome() {
+        Scanner sc = new Scanner(System.in);
+        boolean isPalinedome = true;
+        while (true) {
+            String input1 = sc.nextLine();
+            if (input1.equals("exit")) {
+                break;
+            }
+            char[] input = input1.toCharArray();
+            for (int i = 0; i < input.length / 2; i++) {
+                System.out.println(input[i]);
+                if (input[i] != input[input.length - i - 1]) {
+                    System.out.println("not a palindrome");
+                    isPalinedome = false;
+                    break;
+                }
+            }
+            if (isPalinedome == true) {
+                System.out.println("is palindrome");
+            }
+        }
+        sc.close();
+    }
+
+    public static List<Integer> getNumbers() {
+        Scanner sc = new Scanner(System.in);
+        List<Integer> numbers = new ArrayList<>();
+        while (sc.hasNext()) {
+            if (sc.hasNextInt()) {
+                numbers.add(sc.nextInt());
+            } else {
+                String input = sc.next();
+                if (input.equalsIgnoreCase("done")) {
+                    break;
+                } else {
+                    System.out.println("Invalid input. Please enter a number or 'done'.");
+                }
+            }
+        }
+        sc.close();
+        return numbers;
+    }
+
+    public static float[] calculateStats(List<Integer> numbers) {
+        float[] result = new float[3];
+        float sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+
+        if (!numbers.isEmpty()) {
+            result[2] = sum / numbers.size();
+        }
+        result[0] = Collections.min(numbers);
+        result[1] = Collections.max(numbers);
+        return result;
+    }
+
+    public static void displayResults(float[] results) {
+        System.out.println(results[0]);
+        System.out.println(results[1]);
+        System.out.println(results[2]);
+    }
+
+
+    public static void  ModularMiniProject() {
+        displayResults(calculateStats(getNumbers()));
+    }
+ 
+    public static void main(String[] args) {
+        //VariablesandTypeCasting();
+        //PasswordValidationwithSubstrings();
+        //StringManipulationChallenge();
+        //ArrayListAnalysis();
+        //MatrixOperations(); 
+            //what the fuck is a main diagonal sum
+        //DynamicListManager();
+        //NumberClassifierwithSelection();
+        //LoopswithConditions();
+        //is_palindrome();
+        //ModularMiniProject();
+    }
+
+}
